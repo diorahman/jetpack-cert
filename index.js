@@ -20,15 +20,14 @@ let progressListener = {
                 console.log('request is not Ci.nsIChannel');
                 return;
             }
-            console.log(aRequest.securityInfo);
-            console.log(aRequest instanceof Ci.nsIChannel);
-            console.log(aRequest.securityInfo instanceof Ci.nsITransportSecurityInfo);
-            console.log(aRequest.securityInfo instanceof Ci.nsISSLStatusProvider);
-            console.log('--');
 
-            if (aRequest.securityInfo instanceof Ci.nsISSLStatusProvider) {
-                console.log('aRequest.securityInfo instanceof Ci.nsISSLStatusProvider');
-                const provider = aRequest.securityInfo.QueryInterface(Ci.nsISSLStatusProvider);
+            const securityInfo = aRequest.securityInfo;
+            console.log(securityInfo);
+            if (aRequest instanceof Ci.nsIChannel
+                && securityInfo instanceof Ci.nsITransportSecurityInfo
+                && securityInfo instanceof Ci.nsISSLStatusProvider)
+            {
+                const provider = securityInfo.QueryInterface(Ci.nsISSLStatusProvider);
                 const certificate = provider.SSLStatus.QueryInterface(Ci.nsISSLStatus).serverCert;
                 console.log('certificate: ');
                 console.log(certificate);
