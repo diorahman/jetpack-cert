@@ -1,0 +1,16 @@
+{
+  "title": "SPSE",
+  "name": "spse",
+  "version": "0.0.1",
+  "description": "An SPSE add-on",
+  "main": "index.js",
+  "author": "Dhi Aurrahman <diorahman@rockybars.com>",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack",
+    "spse"
+  ]
+}
