@@ -37,6 +37,8 @@ let progressListener = {
 
                 console.log('tab: ');
                 console.log(highLevel.id);
+                console.log('current active tab: ');
+                console.log(tabs.activeTab.id);
                 console.log('certificate: ');
                 console.log(certificate);
             }
