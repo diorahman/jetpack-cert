@@ -1,8 +1,8 @@
 {
-  "title": "SPSE",
-  "name": "spse",
+  "title": "Cert",
+  "name": "cert",
   "version": "0.0.1",
-  "description": "An SPSE add-on",
+  "description": "A cert fetch add-on",
   "main": "index.js",
   "author": "Dhi Aurrahman <diorahman@rockybars.com>",
   "engines": {
@@ -11,6 +11,6 @@
   "license": "MIT",
   "keywords": [
     "jetpack",
-    "spse"
+    "certificate"
   ]
 }
