@@ -20,9 +20,10 @@ let progressListener = {
                 console.log('request is not Ci.nsIChannel');
                 return;
             }
-
             const securityInfo = aRequest.securityInfo;
-            console.log(securityInfo);
+            if (!securityInfo) {
+                console.log('no security info');
+            }
             if (aRequest instanceof Ci.nsIChannel
                 && securityInfo instanceof Ci.nsITransportSecurityInfo
                 && securityInfo instanceof Ci.nsISSLStatusProvider)
