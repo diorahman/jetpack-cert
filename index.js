@@ -47,15 +47,12 @@ let progressListener = {
 
         console.log('INSECURE!');
 
-        // handle insecure or broken connection
+        // handle insecure or broken connection, use cookie or rendered token
     }
 }
 
 tabs.on('activate', tab => {
     console.log('id: ', tab.id);
-    for (let k in tab.window) {
-        console.log(k);
-    }
 
     const lowLevel = viewFor(tab);
     let browser = getBrowserForTab(lowLevel);
