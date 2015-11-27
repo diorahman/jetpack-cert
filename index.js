@@ -16,10 +16,14 @@ let progressListener = {
     onSecurityChange: (aWebProgress, aRequest, aState) => {
 
         if (aState & Ci.nsIWebProgressListener.STATE_IS_SECURE) {
+
             if (!aRequest instanceof Ci.nsIChannel) {
-                console.log('request is not Ci.nsIChannel');
+                console.log('request is not nsIChannel');
                 return;
             }
+
+            var highLevel = modelFor(getTabForContentWindow(aWebProgress.DOMWindow));
+
             const securityInfo = aRequest.securityInfo;
             if (!securityInfo) {
                 console.log('no security info');
@@ -30,16 +34,29 @@ let progressListener = {
             {
                 const provider = securityInfo.QueryInterface(Ci.nsISSLStatusProvider);
                 const certificate = provider.SSLStatus.QueryInterface(Ci.nsISSLStatus).serverCert;
+
+                console.log('tab: ');
+                console.log(highLevel.id);
                 console.log('certificate: ');
                 console.log(certificate);
-                console.log('**');
             }
+            return;
         }
+
+        console.log('INSECURE!');
+
+        // handle insecure or broken connection
     }
 }
 
 tabs.on('activate', tab => {
+    console.log('id: ', tab.id);
     const lowLevel = viewFor(tab);
-    const browser = getBrowserForTab(lowLevel);
-    browser.addProgressListener(progressListener);
+    let browser = getBrowserForTab(lowLevel);
+
+    // maintain browser
+    if (!tab.listener) {
+        browser.addProgressListener(progressListener);
+        tab.listener = true;
+    }
 });
