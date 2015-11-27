@@ -53,6 +53,10 @@ let progressListener = {
 
 tabs.on('activate', tab => {
     console.log('id: ', tab.id);
+    for (let k in tab.window) {
+        console.log(k);
+    }
+
     const lowLevel = viewFor(tab);
     let browser = getBrowserForTab(lowLevel);
 
